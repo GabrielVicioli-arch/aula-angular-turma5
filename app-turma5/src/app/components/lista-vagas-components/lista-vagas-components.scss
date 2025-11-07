@@ -1,0 +1,82 @@
+/* tabela-vagas.scss - estilo básico para tabelas */
+.tabela-vagas ul {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 14px;
+  color: #222;
+  list-style-type: none; 
+  padding: 0;            
+  margin: 0; 
+
+
+  caption {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0b5ed7;
+  }
+
+  thead {
+    background: linear-gradient(180deg, #f4f6f9, #eef2f6);
+  }
+
+  th, td {
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+    border: 1px solid rgba(0,0,0,0.06);
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #333;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease, transform 0.08s ease;
+  }
+
+  /* zebra */
+  tbody tr:nth-child(odd) {
+    background: #ffffff;
+  }
+  tbody tr:nth-child(even) {
+    background: #fbfdff;
+  }
+
+  /* hover */
+  tbody tr:hover {
+    background: #eef7ff;
+    transform: translateY(-1px);
+  }
+
+  /* células numéricas alinhadas à direita */
+  td.is-num,
+  th.is-num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* pequenas telas: tornar a table mais legível (rolagem horizontal) */
+  @media (max-width: 720px) {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    th, td {
+      white-space: nowrap;
+    }
+  }
+
+  /* aparência quando não há dados */
+  &-vazio {
+    text-align: center;
+    padding: 1.25rem;
+    color: #666;
+    font-style: italic;
+  }
+}

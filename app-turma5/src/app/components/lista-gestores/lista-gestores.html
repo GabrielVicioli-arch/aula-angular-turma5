@@ -1,0 +1,25 @@
+<div>
+    <h1>Lista de Gestores</h1>
+
+<table class="tabela-gestores">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Cargo</th>
+      <th>Departamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(gestor of gestores(); track $index) {
+      <tr>
+        <td>{{ gestor.nome }}</td>
+        <td>{{ gestor.email }}</td>
+        <td>{{ gestor.cargo }}</td>
+        <td>{{ getNomeDepartamento(gestor.departamentoId) }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+</div>
