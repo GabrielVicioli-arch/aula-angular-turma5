@@ -1,6 +1,63 @@
-<h1>Hello World!</h1>
-<h2>Hello World!</h2>
-<h3>Hello World!</h3>
-<h4>Hello Wordl!</h4>
-<h5>Hello World!</h5>
-<h6>Hello World!</h6>
+<div class="form-container">
+  <h2>{{ tituloPagina }}</h2>
+
+  <form (ngSubmit)="salvar()">
+    <label>
+      Título da vaga:
+      <input type="text" [(ngModel)]="vaga.titulo" name="titulo" required />
+    </label>
+
+    <label>
+      Motivo:
+      <textarea [(ngModel)]="vaga.motivo" name="motivo" required></textarea>
+    </label>
+
+    <label>
+      Quantidade:
+      <input type="number" [(ngModel)]="vaga.quantidade" name="quantidade" required />
+    </label>
+
+    <label>
+      Gestor responsável:
+      <select [(ngModel)]="vaga.gestorId" name="gestorId" required>
+        <option value="">Selecione um gestor</option>
+        <option *ngFor="let g of gestores" [value]="g.id">
+          {{ g.nome }} - {{ g.cargo }}
+        </option>
+      </select>
+    </label>
+
+    <!-- Campo só aparece no modo edição -->
+    <div *ngIf="idUrl">
+      <label>
+        Status da vaga:
+        <select [(ngModel)]="vaga.aprovacao" name="aprovacao">
+          <option *ngFor="let status of statusOpcoes" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="requisitos">
+      <h3>Requisitos</h3>
+
+      <ul>
+        <li *ngFor="let req of vaga.requisitos; let i = index">
+          {{ req }}
+          <button type="button" (click)="removerRequisito(i)">Remover</button>
+        </li>
+      </ul>
+
+      <div class="campo-requisito">
+        <input type="text" [(ngModel)]="novoRequisito" name="novoRequisito" placeholder="Digite um requisito" />
+        <button type="button" (click)="adicionarRequisito()">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="botoes">
+      <button type="submit">Salvar</button>
+      <button type="button" routerLink="/">Voltar</button>
+    </div>
+  </form>
+</div>

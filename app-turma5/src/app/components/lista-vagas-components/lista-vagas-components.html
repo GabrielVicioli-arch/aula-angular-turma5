@@ -1,4 +1,4 @@
-<h1>
+<!-- <h1>
     Lista vagas
 </h1>
 
@@ -31,9 +31,12 @@
     {{ pedidosVagas() }}
 </div>
 
+<div> -->
 <div>
-
-    <h3>Lista Vaga</h3>
+    <h1>Lista de Vagas</h1>
+    <div class="botoes-superior">
+        <button type="button" class="btn-criar" routerLink="/nova-vaga">Nova Vaga</button>
+    </div>
     <table class="tabela-vagas">
         <thead>
             <tr>
@@ -44,6 +47,7 @@
                 <th>Motivo</th>
                 <th>Requisitos</th>
                 <th>Status</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -74,8 +78,16 @@
                         }
                     </ul>
                 </td>
-                <td> <!--[class]="(vaga.aprovacao === 'Aprovado')? 'verde': ((vaga.aprovacao == 'Pendente'))? 'amarelo' : ((vaga.aprovacao == 'Reprovado'))? 'vermelho'"-->
+                <td [class]="voltaClassesStatus(vaga.aprovacao)">
                     {{ vaga.aprovacao }}
+                </td>
+                <td>
+                    <button type="button" class="btn-editar" [routerLink]="['/editar-vaga', vaga.id]">
+                        Editar
+                    </button>
+                    <button type="button" class="btn-excluir" (click)="deletarVaga(vaga.id)">
+                        Deletar
+                    </button>
                 </td>
             </tr>
             }

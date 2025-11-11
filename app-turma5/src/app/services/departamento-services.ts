@@ -14,4 +14,9 @@ export class DepartamentoService {
   getDepartamento(): Observable<TipoDepartamento[]> {
     return this.http.get<TipoDepartamento[]>(this.urlBase)
   }
+
+  postCriarDepartamento(dados: TipoDepartamento): Observable<TipoDepartamento> {
+    return this.http.post<TipoDepartamento>(this.urlBase, dados);
+  }
+
 }

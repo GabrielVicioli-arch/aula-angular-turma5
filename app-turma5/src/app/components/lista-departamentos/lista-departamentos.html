@@ -1,0 +1,15 @@
+<div class="form-departamento">
+  <h3>Criar Departamento</h3>
+
+  <div class="campo">
+    <label for="nomeDepto">Nome do novo departamento:</label>
+    <input 
+      id="nomeDepto" 
+      type="text" 
+      [(ngModel)]="nomeCategoria" 
+      placeholder="Digite o nome do departamento"
+    />
+  </div>
+
+  <button type="button" (click)="criarDepartamento()">Criar</button>
+</div>

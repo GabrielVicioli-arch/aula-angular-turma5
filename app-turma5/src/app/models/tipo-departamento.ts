@@ -1,4 +1,4 @@
 export interface TipoDepartamento {
-    id: string
+    id?: string
     departamento: string
 }

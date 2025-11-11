@@ -1,45 +1,101 @@
 {
-    "vagas": [
-        {
-            "id": "yhu8",
-            "titulo": "Desenvolvedor Front-end Angular - Pleno",
-            "motivo": "Aumento de demanda por conta de novos projetos fechados",
-            "requisitos": [
-                "3 anos de experiência com Angular CLI",
-                "Conhecimento de Observables e Rxjs",
-                "Conhecimento em requisições de API Rest",
-                "Experiência em criação de documentações"
-            ],
-            "quantidade": 2,
-            "aprovacao": "Pendente",
-            "gestorId": "u651",
-            "dataSolicitacao": "2025-10-28T15:30:00.000Z"
-        }
-    ],
-    "gestor": [
-        {
-            "id": "u651",
-            "nome": "Anderson Dias",
-            "email": "anderson.dias@itlean.com.br",
-            "cargo": "Gerente de delivery",
-            "departamentoId": "k76i"
-        },
-        {
-            "id": "j81b",
-            "nome": "Samanta Padilha",
-            "email": "samanta.padilha@itlean.com.br",
-            "cargo": "Gerente de gente e gestão",
-            "departamentoId": "i90v"
-        }
-    ],
-    "departamento": [
-        {
-            "id": "i90v",
-            "departamento": "Gente"
-        },
-        {
-            "id": "k76i",
-            "departamento": "Operação"
-        }
-    ]
+  "vagas": [
+    {
+      "id": "yhu8",
+      "titulo": "Desenvolvedor Front-end Angular - Pleno",
+      "motivo": "Aumento de demanda por conta de novos projetos fechados",
+      "requisitos": [
+        "3 anos de experiência com Angular CLI",
+        "Conhecimento de Observables e Rxjs",
+        "Conhecimento em requisições de API Rest",
+        "Experiência em criação de documentações"
+      ],
+      "quantidade": 6,
+      "aprovacao": "Aprovado",
+      "gestorId": "u651",
+      "dataSolicitacao": "2025-10-28T15:30:00.000Z"
+    },
+    {
+      "id": "yhu8",
+      "titulo": "Desenvolvedor Front-end Angular - Pleno",
+      "motivo": "Aumento de demanda por conta de novos projetos fechados",
+      "requisitos": [
+        "3 anos de experiência com Angular CLI",
+        "Conhecimento de Observables e Rxjs",
+        "Conhecimento em requisições de API Rest",
+        "Experiência em criação de documentações"
+      ],
+      "quantidade": 2,
+      "aprovacao": "Aprovado",
+      "gestorId": "u651",
+      "dataSolicitacao": "2025-10-28T15:30:00.000Z"
+    },
+    {
+      "id": "yhu8",
+      "titulo": "Desenvolvedor Front-end Angular - Pleno",
+      "motivo": "Aumento de demanda por conta de novos projetos fechados",
+      "requisitos": [
+        "3 anos de experiência com Angular CLI",
+        "Conhecimento de Observables e Rxjs",
+        "Conhecimento em requisições de API Rest",
+        "Experiência em criação de documentações"
+      ],
+      "quantidade": 2,
+      "aprovacao": "Reprovado",
+      "gestorId": "u651",
+      "dataSolicitacao": "2025-10-28T15:30:00.000Z"
+    },
+    {
+      "id": "7f19",
+      "titulo": "Testando",
+      "motivo": "Testando",
+      "requisitos": [
+        "Testando",
+        "Teste 2",
+        "teste 3",
+        "teste 4"
+      ],
+      "quantidade": 3,
+      "aprovacao": "Reprovado",
+      "gestorId": "j81b",
+      "dataSolicitacao": "2025-11-11T13:08:20.101Z"
+    }
+  ],
+  "gestor": [
+    {
+      "id": "u651",
+      "nome": "Anderson Dias Lima",
+      "email": "anderson.dias@itlean.com.br",
+      "cargo": "Gerente de delivery",
+      "departamentoId": "k76i"
+    },
+    {
+      "id": "j81b",
+      "nome": "Samanta Padilha",
+      "email": "samanta.padilha@itlean.com.br",
+      "cargo": "Gerente de gente e gestão",
+      "departamentoId": "i90v"
+    },
+    {
+      "id": "c658",
+      "nome": "Gabriel Vicioli",
+      "email": "gabriel.vicioli@itlean.com.br",
+      "cargo": "It Lindo",
+      "departamentoId": "k76i"
+    }
+  ],
+  "departamento": [
+    {
+      "id": "i90v",
+      "departamento": "Gente"
+    },
+    {
+      "id": "k76i",
+      "departamento": "Operação"
+    },
+    {
+      "id": "6cd8",
+      "departamento": "Novo Departamento"
+    }
+  ]
 }

@@ -1,0 +1,145 @@
+.form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: #333;
+    gap: 5px;
+
+    input,
+    textarea,
+    select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+  }
+
+  .requisitos {
+    h3 {
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        background: #f6f6f6;
+        margin-bottom: 6px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          background: #ff5252;
+          color: #fff;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background 0.3s ease;
+
+          &:hover {
+            background: #e84343;
+          }
+        }
+      }
+    }
+
+    .campo-requisito {
+      display: flex;
+      gap: 10px;
+
+      input {
+        flex: 1;
+      }
+
+      button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #0056b3;
+        }
+      }
+    }
+  }
+
+  .botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s;
+
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+
+    button[type="submit"] {
+      background: #28a745;
+      color: white;
+
+      &:hover {
+        background: #218838;
+      }
+    }
+
+    button[routerLink] {
+      background: #6c757d;
+      color: white;
+
+      &:hover {
+        background: #5a6268;
+      }
+    }
+  }
+}

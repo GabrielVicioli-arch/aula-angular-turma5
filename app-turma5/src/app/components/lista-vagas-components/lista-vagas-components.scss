@@ -1,82 +1,197 @@
-/* tabela-vagas.scss - estilo básico para tabelas */
-.tabela-vagas ul {
+h1 {
+  text-align: center;
+  color: #333;
+  margin: 20px 0;
+}
+
+/* ---------------- BOTÃO CRIAR ---------------- */
+.botoes-superior {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+
+  .btn-criar {
+    position: relative;
+    background: linear-gradient(135deg, #0cfad6, #0ab25b);
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+
+      /* Máscaras para compatibilidade */
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+}
+
+/* ---------------- TABELA ---------------- */
+.tabela-vagas {
   width: 100%;
   border-collapse: collapse;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-size: 14px;
-  color: #222;
-  list-style-type: none; 
-  padding: 0;            
-  margin: 0; 
-
-
-  caption {
-    text-align: left;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #0b5ed7;
-  }
-
-  thead {
-    background: linear-gradient(180deg, #f4f6f9, #eef2f6);
-  }
+  margin-top: 10px;
 
   th, td {
-    padding: 0.65rem 0.9rem;
-    text-align: left;
-    border: 1px solid rgba(0,0,0,0.06);
-    vertical-align: middle;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
   }
 
   th {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: #333;
+    background: #007bff;;
+    color: #fff;
   }
 
-  tbody tr {
-    transition: background 0.15s ease, transform 0.08s ease;
+  tr:nth-child(even) {
+    background: #f9f9f9;
   }
 
-  /* zebra */
-  tbody tr:nth-child(odd) {
-    background: #ffffff;
-  }
-  tbody tr:nth-child(even) {
-    background: #fbfdff;
+  .verde {
+    color: #28a745;
+    font-weight: 600;
   }
 
-  /* hover */
-  tbody tr:hover {
-    background: #eef7ff;
-    transform: translateY(-1px);
+  .amarelo {
+    color: #ffc107;
+    font-weight: 600;
   }
 
-  /* células numéricas alinhadas à direita */
-  td.is-num,
-  th.is-num {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
+  .vermelho {
+    color: #dc3545;
+    font-weight: 600;
   }
 
-  /* pequenas telas: tornar a table mais legível (rolagem horizontal) */
-  @media (max-width: 720px) {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  /* ---------------- BOTÃO EDITAR ---------------- */
+  .btn-editar {
+    position: relative;
+    background: linear-gradient(135deg, #ffc107, #d39e00);
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
 
-    th, td {
-      white-space: nowrap;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, #fff176, #fbc02d);
+
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.97);
     }
   }
 
-  /* aparência quando não há dados */
-  &-vazio {
-    text-align: center;
-    padding: 1.25rem;
-    color: #666;
-    font-style: italic;
+  /* ---------------- BOTÃO EXCLUIR ---------------- */
+  .btn-excluir {
+    position: relative;
+    background: linear-gradient(135deg, #dc3545, #a71d2a);
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, #ff6b6b, #e53935);
+
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
   }
 }

@@ -1,25 +1,66 @@
 <div>
-    <h1>Lista de Gestores</h1>
+  <h1>Lista de Gestores</h1>
 
-<table class="tabela-gestores">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Cargo</th>
-      <th>Departamento</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(gestor of gestores(); track $index) {
+  <table class="tabela-gestores">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Cargo</th>
+        <th>Departamento</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(gestor of gestores(); track $index) {
       <tr>
         <td>{{ gestor.nome }}</td>
         <td>{{ gestor.email }}</td>
         <td>{{ gestor.cargo }}</td>
         <td>{{ getNomeDepartamento(gestor.departamentoId) }}</td>
+        <td>
+          <button type="button" class="btn-editar" (click)="editarGestor(gestor)">
+            Editar
+          </button>
+          <button type="button" class="btn-excluir" (click)="deletarGestor(gestor.id)">
+            Deletar
+          </button>
+        </td>
       </tr>
-    }
-  </tbody>
-</table>
+      }
+    </tbody>
+  </table>
+</div>
 
+<div>
+  <h1>{{ editando ? 'Editar Gestor' : 'Adicionar Novo Gestor' }}</h1>
+
+  <form class="form-gestor" (ngSubmit)="salvarGestor()" #formGestor="ngForm">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" [(ngModel)]="novoGestor.nome" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="novoGestor.email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="cargo">Cargo:</label>
+      <input type="text" id="cargo" name="cargo" [(ngModel)]="novoGestor.cargo" required />
+    </div>
+
+    <div class="form-group">
+      <label for="departamentoId">Departamento:</label>
+      <select id="departamentoId" name="departamentoId" [(ngModel)]="novoGestor.departamentoId" required>
+        <option value="">Selecione o departamento</option>
+        @for (dep of departamentos(); track $index) {
+        <option [value]="dep.id">{{ dep.departamento }}</option>
+        }
+      </select>
+    </div>
+
+    <button type="submit">{{ editando ? 'Salvar Alterações' : 'Cadastrar Gestor' }}</button>
+  </form>
 </div>

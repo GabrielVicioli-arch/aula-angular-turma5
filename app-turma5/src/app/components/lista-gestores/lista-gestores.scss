@@ -1,76 +1,174 @@
-/* ===== Estilo para a tabela de gestores ===== */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
 .tabela-gestores {
   width: 100%;
   border-collapse: collapse;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-size: 14px;
-  color: #222;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  margin-top: 20px;
-
-  caption {
-    text-align: left;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #0b5ed7;
-  }
-
-  thead {
-    background: linear-gradient(180deg, #f8f9fa, #e9ecef);
-  }
+  margin-bottom: 40px;
 
   th, td {
-    padding: 0.75rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    text-align: left;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
   }
 
   th {
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 13px;
-    color: #333;
+    background: #007bff;
+    color: white;
   }
 
-  tbody tr:nth-child(odd) {
-    background: #ffffff;
+  tr:nth-child(even) {
+    background: #f9f9f9;
   }
 
-  tbody tr:nth-child(even) {
-    background: #f9fbfd;
+  .btn-editar {
+    position: relative;
+    background: linear-gradient(135deg, #ffc107, #d39e00);
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, #fff176, #fbc02d);
+
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
   }
 
-  tbody tr:hover {
-    background: #eef6ff;
-    transition: background 0.2s ease;
-  }
+  /* ---------------- BOTÃO EXCLUIR ---------------- */
+  .btn-excluir {
+    position: relative;
+    background: linear-gradient(135deg, #dc3545, #a71d2a);
+    color: #fff;
+    border: 2px solid transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 5px;
 
-  /* Colunas numéricas ou mais curtas alinhadas à direita */
-  td.is-num, th.is-num {
-    text-align: right;
-  }
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(135deg, #ff6b6b, #e53935);
 
-  /* Responsividade */
-  @media (max-width: 720px) {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
 
-    th, td {
-      white-space: nowrap;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.97);
     }
   }
 }
 
-/* Título da página */
-h1 {
-  font-size: 22px;
-  font-weight: 600;
-  color: #0b5ed7;
-  margin-bottom: 10px;
-  text-align: center;
+.form-gestor {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input, select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #218838;
+    }
+  }
+
+    
 }
