@@ -1,0 +1,51 @@
+<div class="container-departamentos">
+  <h2>Lista de Departamentos</h2>
+
+  <div class="top-bar">
+    <div class="filtros">
+      <select [(ngModel)]="filtroNome" class="select-filtro">
+        <option value="">Filtrar por nome</option>
+        <option *ngFor="let nome of nomesUnicos" [value]="nome">{{ nome }}</option>
+      </select>
+
+      <select [(ngModel)]="filtroLocal" class="select-filtro">
+        <option value="">Filtrar por local</option>
+        <option *ngFor="let local of locaisUnicos" [value]="local">{{ local }}</option>
+      </select>
+
+      <button (click)="limparFiltros()" class="btn-limpar">Limpar</button>
+    </div>
+
+    <button routerLink="/departamentos/novo" class="btn-novo">+ Novo Departamento</button>
+  </div>
+
+  <table class="tabela-departamentos">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Local</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of departamentosFiltrados()">
+        <td>{{ d.nome }}</td>
+        <td>{{ d.local }}</td>
+        <td class="acoes">
+          <button [routerLink]="['/departamentos/editar', d.id]" class="btn-editar" title="Editar">
+            ✏️
+          </button>
+          <button (click)="deletarDepartamento(d.id)" class="btn-excluir" title="Excluir">
+            🗑️
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="departamentosFiltrados().length === 0">
+        <td colspan="3" class="sem-resultados">
+          Nenhum departamento encontrado com os filtros selecionados.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

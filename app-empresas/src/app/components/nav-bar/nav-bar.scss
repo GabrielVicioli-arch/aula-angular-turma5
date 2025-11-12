@@ -1,0 +1,40 @@
+$bg-navbar: #1f2937; // fundo escuro
+$link-color: #ffffff; // links brancos
+$link-active-color: #facc15; // amarelo para ativo
+$logo-color: #3b82f6; // azul da logo
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: $bg-navbar;
+
+  .logo {
+    color: $logo-color;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  .links {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: $link-color;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+
+      &:hover {
+        color: $link-active-color; // muda quando passa o mouse
+      }
+
+      &.ativo {
+        color: $link-active-color; // destaque do routerLink ativo
+        font-weight: 600;
+      }
+    }
+  }
+}

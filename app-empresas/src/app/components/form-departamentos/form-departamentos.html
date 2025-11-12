@@ -1,0 +1,24 @@
+<div class="form-container">
+  <h2>{{ id ? 'Editar Departamento' : 'Cadastrar Departamento' }}</h2>
+
+  <form (ngSubmit)="salvar()">
+
+    <div class="campo">
+      <label>Nome do Departamento:</label>
+      <input type="text" [(ngModel)]="departamento.nome" name="nome" [ngClass]="{'erro': erros.nome}">
+      <small class="mensagem-erro" *ngIf="erros.nome">{{ erros.nome }}</small>
+    </div>
+
+    <div class="campo">
+      <label>Local:</label>
+      <input type="text" [(ngModel)]="departamento.local" name="local" [ngClass]="{'erro': erros.local}">
+      <small class="mensagem-erro" *ngIf="erros.local">{{ erros.local }}</small>
+    </div>
+
+    <div class="botoes">
+      <button type="submit" class="salvar">Salvar</button>
+      <button type="button" class="voltar" (click)="voltar()">Voltar</button>
+    </div>
+    
+  </form>
+</div>

@@ -1,0 +1,55 @@
+<div class="container-funcionarios">
+  <h2>Lista de Funcionários</h2>
+
+  <div class="top-bar">
+    <div class="filtros">
+      <select [(ngModel)]="filtroNome" class="select-filtro">
+        <option value="">Filtrar por nome</option>
+        <option *ngFor="let nome of nomesUnicos" [value]="nome">{{ nome }}</option>
+      </select>
+
+      <select [(ngModel)]="filtroCargo" class="select-filtro">
+        <option value="">Filtrar por cargo</option>
+        <option *ngFor="let cargo of cargosUnicos" [value]="cargo">{{ cargo }}</option>
+      </select>
+
+      <button (click)="limparFiltros()" class="btn-limpar">Limpar</button>
+    </div>
+
+    <button routerLink="/funcionarios/novo" class="btn-novo">+ Novo Funcionário</button>
+  </div>
+
+  <table class="tabela-funcionarios">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Salário</th>
+        <th>Departamento</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of funcionariosFiltrados()">
+        <td>{{ f.nome }}</td>
+        <td>{{ f.cargo }}</td>
+        <td>{{ f.salario | currency:'BRL':'symbol':'1.2-2' }}</td>
+        <td>{{ obterNomeDepartamento(f.departamentoId) }}</td>
+        <td class="acoes">
+          <button [routerLink]="['/funcionarios/editar', f.id]" class="btn-editar" title="Editar">
+            ✏️
+          </button>
+          <button (click)="deletarFuncionario(f.id!)" class="btn-excluir" title="Excluir">
+            🗑️
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="funcionariosFiltrados().length === 0">
+        <td colspan="5" class="sem-resultados">
+          Nenhum funcionário encontrado com os filtros selecionados.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

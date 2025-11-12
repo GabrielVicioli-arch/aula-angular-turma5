@@ -1,0 +1,109 @@
+$bg-form: #f7f9fc;
+$input-bg: #ffffff;
+$input-border: #cbd5e1;
+$btn-salvar-color: #16a34a;
+$btn-voltar-color: #6b7280;
+$text-color: #1f2937;
+$label-color: #374151;
+
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background-color: $bg-form;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.30);
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: center;
+    color: #1d4ed8;
+    margin-bottom: 25px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-left: 2px; // 🔹 Ajuste sutil à esquerda
+    padding-right: 2px; // 🔹 Mesmo espaço à direita
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        color: $label-color;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      input,
+      select {
+        width: 100%; // 🔹 Ocupa toda a largura da div .campo
+        box-sizing: border-box; // 🔹 Garante que o padding não estoure o limite da largura
+        padding: 10px 12px;
+        border: 1px solid $input-border;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        background-color: $input-bg;
+        transition: 0.2s;
+
+        &:focus {
+          outline: none;
+          border-color: #1d4ed8;
+          box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.3);
+        }
+
+        &.erro {
+          border-color: red;
+          background-color: #fff5f5;
+        }
+      }
+
+      .mensagem-erro {
+        color: red;
+        font-size: 13px;
+        margin-top: 4px;
+        margin-left: 3px;
+      }
+    }
+
+    .botoes {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      button {
+        padding: 10px 18px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &.salvar {
+          background-color: $btn-salvar-color;
+          color: white;
+
+          &:hover {
+            background-color: darken($btn-salvar-color, 10%);
+          }
+        }
+
+        &.voltar {
+          background-color: $btn-voltar-color;
+          color: white;
+
+          &:hover {
+            background-color: darken($btn-voltar-color, 10%);
+          }
+        }
+      }
+    }
+  }
+}

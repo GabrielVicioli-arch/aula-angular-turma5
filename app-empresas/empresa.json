@@ -1,0 +1,54 @@
+{
+  "departamentos": [
+    {
+      "id": "abc1",
+      "nome": "Tecnologia",
+      "local": "São Paulo 3"
+    },
+    {
+      "id": "abc2",
+      "nome": "Recursos Humanos",
+      "local": "Rio de Janeiro"
+    },
+    {
+      "id": "abc3",
+      "nome": "Financeiro",
+      "local": "Belo Horizonte"
+    },
+    {
+      "id": "97f3",
+      "nome": "Teste3333",
+      "local": "Testando33"
+    }
+  ],
+  "funcionarios": [
+    {
+      "id": "xyz1",
+      "nome": "Ana Martins",
+      "cargo": "Desenvolvedora",
+      "salario": 6000,
+      "departamentoId": "abc1"
+    },
+    {
+      "id": "xyz2",
+      "nome": "Bruno Souza",
+      "cargo": "Analista de RH",
+      "salario": 4200,
+      "departamentoId": "abc2"
+    },
+    {
+      "id": "xyz3",
+      "nome": "Clara Lima",
+      "cargo": "Contadora",
+      "salario": 5000,
+      "departamentoId": "abc3"
+    },
+    {
+      "id": "xyz4",
+      "nome": "Diego Ferreira",
+      "cargo": "Tech Lead",
+      "salario": 8500,
+      "departamentoId": "abc1"
+    }
+  ]
+}

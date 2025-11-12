@@ -1,0 +1,39 @@
+<div class="form-container">
+  <h2>{{ modoEdicao ? 'Editar Funcionário' : 'Cadastrar Funcionário' }}</h2>
+
+  <form (ngSubmit)="salvarFuncionario()">
+
+    <div class="campo">
+      <label>Nome:</label>
+      <input type="text" [(ngModel)]="funcionario.nome" name="nome" [ngClass]="{'erro': erros.nome}">
+      <small class="mensagem-erro" *ngIf="erros.nome">{{ erros.nome }}</small>
+    </div>
+
+    <div class="campo">
+      <label>Cargo:</label>
+      <input type="text" [(ngModel)]="funcionario.cargo" name="cargo" [ngClass]="{'erro': erros.cargo}">
+      <small class="mensagem-erro" *ngIf="erros.cargo">{{ erros.cargo }}</small>
+    </div>
+
+    <div class="campo">
+      <label>Salário:</label>
+      <input type="number" [(ngModel)]="funcionario.salario" name="salario" [ngClass]="{'erro': erros.salario}">
+      <small class="mensagem-erro" *ngIf="erros.salario">{{ erros.salario }}</small>
+    </div>
+
+    <div class="campo">
+      <label>Departamento:</label>
+      <select [(ngModel)]="funcionario.departamentoId" name="departamentoId" [ngClass]="{'erro': erros.departamentoId}">
+        <option value="">Selecione...</option>
+        <option *ngFor="let dep of departamentos" [value]="dep.id">{{ dep.nome }}</option>
+      </select>
+      <small class="mensagem-erro" *ngIf="erros.departamentoId">{{ erros.departamentoId }}</small>
+    </div>
+
+    <div class="botoes">
+      <button type="submit" class="salvar">Salvar</button>
+      <button type="button" class="voltar" (click)="voltar()">Voltar</button>
+    </div>
+
+  </form>
+</div>
