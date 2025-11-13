@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { FuncionarioService } from '../../services/funcionario';
 import { DepartamentoService } from '../../services/departamento';
@@ -11,24 +11,19 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-form-funcionarios',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './form-funcionarios.html',
   styleUrls: ['./form-funcionarios.scss']
 })
 export class FormFuncionariosComponent implements OnInit {
 
-  funcionario: TipoFuncionario = { id: '', nome: '', cargo: '', salario: 0, departamentoId: '' };
+  form!: FormGroup; // formulário reativo
   departamentos: TipoDepartamento[] = [];
   modoEdicao: boolean = false;
-
-  erros = {
-    nome: '',
-    cargo: '',
-    salario: '',
-    departamentoId: ''
-  };
+  funcionarioId: string | null = null;
 
   constructor(
+    private fb: FormBuilder,
     private funcionarioService: FuncionarioService,
     private departamentoService: DepartamentoService,
     private router: Router,
@@ -36,77 +31,72 @@ export class FormFuncionariosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Criando o formulário com validações
+    this.form = this.fb.group({
+      nome: ['', Validators.required],
+      cargo: ['', Validators.required],
+      salario: [0, [Validators.required, Validators.min(1)]],
+      departamentoId: ['', Validators.required],
+    });
+
+    // Carrega os departamentos
     this.departamentoService.listarDepartamentos().subscribe((dados) => {
       this.departamentos = dados;
     });
 
+    // Verifica se é edição
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
-      const id = idParam as string;
       this.modoEdicao = true;
-      this.funcionarioService.buscarPorId(id).subscribe((dados) => {
-        this.funcionario = dados;
+      this.funcionarioId = idParam;
+      this.funcionarioService.buscarPorId(idParam).subscribe((dados) => {
+        this.form.patchValue(dados);
       });
     }
   }
 
-  validarCampos(): boolean {
-    let valido = true;
-    this.erros = { nome: '', cargo: '', salario: '', departamentoId: '' };
+  // Getters para facilitar no template
+  get nome() {
+    return this.form.get('nome');
+  }
 
-    if (!this.funcionario.nome || this.funcionario.nome.trim() === '') {
-      this.erros.nome = 'O nome é obrigatório.';
-      valido = false;
-    }
+  get cargo() {
+    return this.form.get('cargo');
+  }
 
-    if (!this.funcionario.cargo || this.funcionario.cargo.trim() === '') {
-      this.erros.cargo = 'O cargo é obrigatório.';
-      valido = false;
-    }
+  get salario() {
+    return this.form.get('salario');
+  }
 
-    if (this.funcionario.salario === null || this.funcionario.salario === undefined || this.funcionario.salario <= 0) {
-      this.erros.salario = 'Informe um salário válido (maior que 0).';
-      valido = false;
-    }
-
-    if (!this.funcionario.departamentoId || this.funcionario.departamentoId.trim() === '') {
-      this.erros.departamentoId = 'Selecione um departamento.';
-      valido = false;
-    }
-
-    return valido;
+  get departamentoId() {
+    return this.form.get('departamentoId');
   }
 
   salvarFuncionario() {
-    if (!this.validarCampos()) {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // exibe os erros
       return;
     }
 
-    if (this.modoEdicao) {
-      const id = this.funcionario.id!;
-      this.funcionarioService.atualizar(id, this.funcionario).subscribe(() => {
+    const funcionario = this.form.value as TipoFuncionario;
+
+    if (this.modoEdicao && this.funcionarioId) {
+      this.funcionarioService.atualizar(this.funcionarioId, funcionario).subscribe(() => {
         Swal.fire({
           icon: 'success',
           title: 'Funcionário atualizado!',
           text: 'As informações foram salvas com sucesso.',
           confirmButtonColor: '#16a34a',
-        }).then(() => {
-          this.router.navigate(['/funcionarios']);
-        });
+        }).then(() => this.router.navigate(['/funcionarios']));
       });
     } else {
-      const novoFuncionario = { ...this.funcionario };
-      delete (novoFuncionario as any).id;
-
-      this.funcionarioService.criar(novoFuncionario).subscribe(() => {
+      this.funcionarioService.criar(funcionario).subscribe(() => {
         Swal.fire({
           icon: 'success',
           title: 'Funcionário cadastrado!',
           text: 'O novo funcionário foi adicionado com sucesso.',
           confirmButtonColor: '#16a34a',
-        }).then(() => {
-          this.router.navigate(['/funcionarios']);
-        });
+        }).then(() => this.router.navigate(['/funcionarios']));
       });
     }
   }

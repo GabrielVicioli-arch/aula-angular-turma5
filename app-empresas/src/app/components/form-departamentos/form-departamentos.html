@@ -1,24 +1,36 @@
 <div class="form-container">
   <h2>{{ id ? 'Editar Departamento' : 'Cadastrar Departamento' }}</h2>
 
-  <form (ngSubmit)="salvar()">
+  <form [formGroup]="form" (ngSubmit)="salvar()">
 
+    <!-- Campo Nome -->
     <div class="campo">
       <label>Nome do Departamento:</label>
-      <input type="text" [(ngModel)]="departamento.nome" name="nome" [ngClass]="{'erro': erros.nome}">
-      <small class="mensagem-erro" *ngIf="erros.nome">{{ erros.nome }}</small>
+      <input type="text" formControlName="nome" [ngClass]="{'erro': nome?.invalid && nome?.touched}">
+      <small class="mensagem-erro" *ngIf="nome?.hasError('required') && nome?.touched">
+        O nome do departamento é obrigatório.
+      </small>
+      <small class="mensagem-erro" *ngIf="nome?.hasError('minlength') && nome?.touched">
+        O nome deve ter ao menos 3 caracteres.
+      </small>
     </div>
 
+    <!-- Campo Local -->
     <div class="campo">
       <label>Local:</label>
-      <input type="text" [(ngModel)]="departamento.local" name="local" [ngClass]="{'erro': erros.local}">
-      <small class="mensagem-erro" *ngIf="erros.local">{{ erros.local }}</small>
+      <input type="text" formControlName="local" [ngClass]="{'erro': local?.invalid && local?.touched}">
+      <small class="mensagem-erro" *ngIf="local?.hasError('required') && local?.touched">
+        O local é obrigatório.
+      </small>
+      <small class="mensagem-erro" *ngIf="local?.hasError('minlength') && local?.touched">
+        O local deve ter ao menos 2 caracteres.
+      </small>
     </div>
 
     <div class="botoes">
       <button type="submit" class="salvar">Salvar</button>
       <button type="button" class="voltar" (click)="voltar()">Voltar</button>
     </div>
-    
+
   </form>
 </div>

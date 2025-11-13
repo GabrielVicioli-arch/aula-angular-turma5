@@ -1,10 +1,10 @@
-$bg-navbar: #1f2937; // fundo escuro
-$link-color: #ffffff; // links brancos
-$link-active-color: #facc15; // amarelo para ativo
-$logo-color: #3b82f6; // azul da logo
+$bg-navbar: #becbd8ff; // fundo escuro
+$link-color: #0f0d0dff; // links brancos
+$link-active-color: #2a7ceeff; // amarelo para ativo
+$logo-color: #2c15faff; // azul da logo
 
 .navbar {
-  display: flex;
+  display: flex;     
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;

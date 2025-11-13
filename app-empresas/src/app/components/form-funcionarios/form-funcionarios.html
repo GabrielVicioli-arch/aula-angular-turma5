@@ -1,33 +1,44 @@
 <div class="form-container">
   <h2>{{ modoEdicao ? 'Editar Funcionário' : 'Cadastrar Funcionário' }}</h2>
 
-  <form (ngSubmit)="salvarFuncionario()">
+  <form [formGroup]="form" (ngSubmit)="salvarFuncionario()">
 
     <div class="campo">
       <label>Nome:</label>
-      <input type="text" [(ngModel)]="funcionario.nome" name="nome" [ngClass]="{'erro': erros.nome}">
-      <small class="mensagem-erro" *ngIf="erros.nome">{{ erros.nome }}</small>
+      <input type="text" formControlName="nome" [ngClass]="{'erro': nome?.invalid && nome?.touched}">
+      <small class="mensagem-erro" *ngIf="nome?.invalid && nome?.touched">
+        O nome é obrigatório.
+      </small>
     </div>
 
     <div class="campo">
       <label>Cargo:</label>
-      <input type="text" [(ngModel)]="funcionario.cargo" name="cargo" [ngClass]="{'erro': erros.cargo}">
-      <small class="mensagem-erro" *ngIf="erros.cargo">{{ erros.cargo }}</small>
+      <input type="text" formControlName="cargo" [ngClass]="{'erro': cargo?.invalid && cargo?.touched}">
+      <small class="mensagem-erro" *ngIf="cargo?.invalid && cargo?.touched">
+        O cargo é obrigatório.
+      </small>
     </div>
 
     <div class="campo">
       <label>Salário:</label>
-      <input type="number" [(ngModel)]="funcionario.salario" name="salario" [ngClass]="{'erro': erros.salario}">
-      <small class="mensagem-erro" *ngIf="erros.salario">{{ erros.salario }}</small>
+      <input type="number" formControlName="salario" [ngClass]="{'erro': salario?.invalid && salario?.touched}">
+      <small class="mensagem-erro" *ngIf="salario?.errors?.['required'] && salario?.touched">
+        O salário é obrigatório.
+      </small>
+      <small class="mensagem-erro" *ngIf="salario?.errors?.['min'] && salario?.touched">
+        Informe um salário válido (maior que 0).
+      </small>
     </div>
 
     <div class="campo">
       <label>Departamento:</label>
-      <select [(ngModel)]="funcionario.departamentoId" name="departamentoId" [ngClass]="{'erro': erros.departamentoId}">
+      <select formControlName="departamentoId" [ngClass]="{'erro': departamentoId?.invalid && departamentoId?.touched}">
         <option value="">Selecione...</option>
         <option *ngFor="let dep of departamentos" [value]="dep.id">{{ dep.nome }}</option>
       </select>
-      <small class="mensagem-erro" *ngIf="erros.departamentoId">{{ erros.departamentoId }}</small>
+      <small class="mensagem-erro" *ngIf="departamentoId?.invalid && departamentoId?.touched">
+        Selecione um departamento.
+      </small>
     </div>
 
     <div class="botoes">

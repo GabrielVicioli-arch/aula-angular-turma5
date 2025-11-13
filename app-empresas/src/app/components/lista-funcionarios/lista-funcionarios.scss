@@ -1,7 +1,7 @@
 $tabela-bg: #f7f9fc;
 $header-bg: #1d4ed8;
 $header-color: white;
-$btn-editar-color: #facc15; // Amarelo para editar
+$btn-editar-color: #B38600; // Amarelo para editar
 $btn-excluir-color: #dc2626; // Vermelho para deletar
 $btn-novo-color: #16a34a; // Verde para novo
 $text-color: #1f2937;
@@ -56,6 +56,7 @@ $filtro-border: #cbd5e1;
         cursor: pointer;
         font-size: 0.95rem;
         transition: 0.2s;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.10);
 
         &:hover {
           background-color: darken(#6b7280, 10%);
@@ -72,6 +73,7 @@ $filtro-border: #cbd5e1;
       cursor: pointer;
       font-size: 0.95rem;
       transition: 0.2s;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.10);
 
       &:hover {
         background-color: darken($btn-novo-color, 10%);
@@ -113,6 +115,7 @@ $filtro-border: #cbd5e1;
         border: none;
         cursor: pointer;
         font-size: 1rem;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.10);
 
         &.btn-editar {
           background-color: $btn-editar-color;

@@ -37,10 +37,10 @@
         <td>{{ obterNomeDepartamento(f.departamentoId) }}</td>
         <td class="acoes">
           <button [routerLink]="['/funcionarios/editar', f.id]" class="btn-editar" title="Editar">
-            ✏️
+            ✏️Editar
           </button>
           <button (click)="deletarFuncionario(f.id!)" class="btn-excluir" title="Excluir">
-            🗑️
+            🗑️Excluir
           </button>
         </td>
       </tr>
